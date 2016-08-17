@@ -1,10 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <title>QR-Doc</title>
+    <!--Include bootstrap3 css-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" rel="stylesheet">
+    <!--Include X-editable css-->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    <!--Include style css-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <!--Include X-editable js-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+    <!--Dropzone-->
+    <script src="js/dropzone.js"></script>
 </head>
 <body>
-    hello
+    <page size="A4">
+        <div id="dropzone">
+            <div>upload document details</div>
+            <input type="file" accept="image/png, application/pdf" />
+        </div>
+    </page>
+    <!--Use portrait-->
+    <!--<page size="A4" layout="portrait"></page>-->
+
+    <script>
+        $(function() {
+
+            $('#dropzone').on('dragover', function() {
+                $(this).addClass('hover');
+            });
+
+            $('#dropzone').on('dragleave', function() {
+                $(this).removeClass('hover');
+            });
+
+            $('#dropzone input').on('change', function(e) {
+                var file = this.files[0];
+
+                $('#dropzone').removeClass('hover');
+
+                if (this.accept && $.inArray(file.type, this.accept.split(/, ?/)) == -1) {
+                    return alert('File type not allowed.');
+                }
+
+                $('#dropzone').addClass('dropped');
+                $('#dropzone img').remove();
+
+                if ((/^image\/(gif|png|jpeg)$/i).test(file.type)) {
+                    var reader = new FileReader(file);
+
+                    reader.readAsDataURL(file);
+
+                    reader.onload = function(e) {
+                        var data = e.target.result,
+                                $img = $('<img />').attr('src', data).fadeIn();
+
+                        $('#dropzone div').html($img);
+                    };
+                } else {
+                    var ext = file.name.split('.').pop();
+
+                    $('#dropzone div').html(ext);
+                }
+            });
+        });
+
+    </script>
 </body>
 </html>
