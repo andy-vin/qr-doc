@@ -3,6 +3,7 @@ body {
 }
 
 page {
+    position: relative;
     background: white;
     display: block;
     margin: 0 auto;
@@ -70,10 +71,104 @@ page[size="A4"][layout="portrait"] {
     left: 0;
 }
 
+.details .row,
+.sender .row,
+.receiver .row,
+.qr-block .row {
+    margin: 0;
+    padding: 10px 0;
+}
+.details .row .type {
+    float: right;
+    padding-bottom: 10%;
+    padding-right: 10px;
+}
+.details .row .type a,
+.details .row .type p,
+.sender .row .sender-name,
+.sender .row p,
+.receiver .row .receiver-name,
+.receiver .row p,
+.qr-block .row .select-path,
+.qr-block .row .qr-code {
+   display: inline-block;
+}
+.details .row .type .editable-unsaved,
+.sender .row .editable-unsaved,
+.receiver .row .editable-unsaved,
+.title .editable-unsaved {
+    border-bottom: none;
+    color: black;
+    font-weight: normal;
+}
+.details .row .type .editable-unsaved:hover,
+.details .row .type .editable-unsaved:focus,
+.sender .row .editable-unsaved:hover,
+.sender .row .editable-unsaved:focus,
+.receiver .row .editable-unsaved:hover,
+.receiver .row .editable-unsaved:focus,
+.title .editable-unsaved:hover,
+.title .editable-unsaved:focus {
+    border-bottom: dashed 1px #0088cc;
+    color: #337ab7;
+}
+.type-input,
+.number-input,
+.data-input {
+    width: 240px !important;
+}
+.sender-input,
+.receiver-input,
+.doc-title-input {
+    width: 470px !important;;
+}
+
+.sender .row .sender-title,
+.receiver .row .receiver-title {
+    padding-left: 10%;
+}
+.sender .row .sender-name,
+.receiver .row .receiver-name {
+     width: 70%;
+     border-bottom: 1px solid black;
+}
+.sender .row .sender-name a,
+.receiver .row .receiver-name a {
+     width: auto;
+     border-bottom: none;
+}
+
+.title {
+    padding: 0 10%;
+    padding-top: 15%;
+    text-align: center;
+}
+.qr-block {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#qrcode {
+    width: 128px;
+    height: 128px;
+    float: right;
+    margin: 0 10px;
+}
+.qr-block .row .select-path {
+     width: calc(100% - 260px);
+    margin-left: 10px;
+ }
+.qr-block .row .select-path input {
+    width: 100%;
+}
 
 @media print {
     body, page {
         margin: 0;
         box-shadow: 0;
+    }
+    .qr-block .row .select-path {
+        display: none;
     }
 }

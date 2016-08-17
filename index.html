@@ -7,6 +7,8 @@
     <title>QR-Doc</title>
     <!--Include bootstrap3 css-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" rel="stylesheet">
+    <!--Include Font Awesome css-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
     <!--Include X-editable css-->
     <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
     <!--Include style css-->
@@ -18,25 +20,70 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
     <!--Dropzone-->
     <script src="js/dropzone.js"></script>
+    <!--Qr-Code-->
+    <script src="js/qrcode.js"></script>
 </head>
 <body>
     <page size="A4">
         <div id="dropzone">
-            <div>upload document details</div>
+            <div>
+                <i class="fa fa-download" aria-hidden="true"></i> завантажте реквізити документу
+            </div>
             <input type="file" accept="image/png, application/pdf" />
+        </div>
+        <div class="details">
+            <div class="row">
+                <div class="type">
+                    <a href="#" id="type" class="edit" data-type="text" data-inputclass="type-input" data-value="Внутрішній / вхідний / вихідний">оберіть необхідний тип документу</a>
+                    <p>№</p>
+                    <a href="#" id="number" class="edit" data-type="text" data-inputclass="number-input" >вкажить номер</a>
+                    <a href="#" id="data" class="edit" data-type="text" data-inputclass="data-input" >вкажить дату</a>
+                </div>
+            </div>
+        </div>
+        <div class="sender">
+            <div class="row">
+                <p class="sender-title">Відправник</p>
+                <div class="sender-name">
+                    <a href="#" id="sender" class="edit sender-name" data-type="text" data-inputclass="sender-input" data-value="текст">вкажіть відправника</a>
+                </div>
+            </div>
+        </div>
+        <div class="receiver">
+            <div class="row">
+                <p class="receiver-title">Адресат</p>
+                <div class="receiver-name">
+                    <a href="#" id="receiver" class="edit sender-name" data-type="text" data-inputclass="receiver-input" data-value="текст">вкажіть адресата</a>
+                </div>
+            </div>
+        </div>
+        <div class="title">
+            <a href="#" id="doc-title" class="edit" data-type="text" data-inputclass="doc-title-input" data-value="текст">Вкажіть вид документу</a>
+        </div>
+        <div class="qr-block">
+            <div class="row">
+                <div class="select-path">
+                    <input id="text" type="file" data-classButton="btn btn-primary">
+                </div>
+                <div id="qrcode" class="qr-code"></div>
+            </div>
         </div>
     </page>
     <!--Use portrait-->
     <!--<page size="A4" layout="portrait"></page>-->
 
     <script>
-        $(function() {
+        $( document ).ready(function() {
+//            Dropzone. Begin
+            $(window).on('dragenter', function(){
+                $(this).preventDefault();
+            });
 
-            $('#dropzone').on('dragover', function() {
+            $('#dropzone').bind('dragover', function() {
                 $(this).addClass('hover');
             });
 
-            $('#dropzone').on('dragleave', function() {
+            $('#dropzone').bind('dragleave', function() {
                 $(this).removeClass('hover');
             });
 
@@ -69,8 +116,31 @@
                     $('#dropzone div').html(ext);
                 }
             });
-        });
+//            Dropzone. End
+//            X-Editable. Begin
+            // setting defaults for the editable
+            $.fn.editable.defaults.mode = 'inline';
+            $.fn.editable.defaults.showbuttons = false;
 
+            $('.edit').editable();
+//            X-Editable. End
+//            QR-Code.Begin
+            var qrcode = new QRCode("qrcode", {
+                width: 128,
+                height: 128,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+
+            $("#text").on('change', function () {
+                var filePath = $(this).val();
+                console.log(filePath);
+                qrcode.makeCode(filePath);
+            });
+//            QR-Code.End
+
+        });
     </script>
 </body>
 </html>
