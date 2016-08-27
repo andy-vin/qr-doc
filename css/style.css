@@ -26,7 +26,10 @@ page[size="A4"][layout="portrait"] {
     border: 1px dotted #000;
     color: #000;
     /*font: bold 24px/200px arial;*/
-    height: 3cm;
+    /*height: 3cm;*/
+    height: auto;
+    min-height: 2cm;
+    max-height: 5cm;
     text-align: center;
     width: 100%;
     background: lightskyblue;
@@ -48,20 +51,27 @@ page[size="A4"][layout="portrait"] {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: 3cm;
+    /*height: 3cm;*/
+    height: auto;
+    min-height: 2cm;
+    max-height: 5cm;
     margin: 0;
+
 }
 
 #dropzone img {
     /*border-radius: 10px;*/
     vertical-align: middle;
     max-width: 100%;
-    max-height: 3cm;
+    /*max-height: 3cm;*/
+    max-height: 5cm;
     object-fit: cover;
 }
 
 #dropzone [type="file"] {
     width: 100%;
+    min-height: 2cm;
+    max-height: 5cm;
     cursor: pointer;
     position: absolute;
     opacity: 0;
@@ -153,7 +163,9 @@ page[size="A4"][layout="portrait"] {
     width: 128px;
     height: 128px;
     float: right;
-    margin: 0 10px;
+    /*margin: 0 5cm;*/
+    left: calc(-50% + 64px);
+    position: relative;
 }
 .qr-block .row .select-path {
      width: calc(100% - 260px);
@@ -163,6 +175,7 @@ page[size="A4"][layout="portrait"] {
     width: 100%;
 }
 
+/* for print */
 @media print {
     body, page {
         margin: 0;
@@ -170,5 +183,11 @@ page[size="A4"][layout="portrait"] {
     }
     .qr-block .row .select-path {
         display: none;
+    }
+}
+/* IE10+ CSS styles */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    #dropzone div i {
+        padding-top: 0.4cm;
     }
 }

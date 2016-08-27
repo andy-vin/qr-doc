@@ -35,7 +35,7 @@
             <div>
                 <i class="fa fa-download" aria-hidden="true"></i> завантажте реквізити документу
             </div>
-            <input type="file" accept="image/png, application/pdf" />
+            <input type="file" accept="image/png, image/jpg, image/jpeg" />
         </div>
         <div class="details">
             <div class="row">
@@ -105,7 +105,7 @@
                 $('#dropzone').addClass('dropped');
                 $('#dropzone img').remove();
 
-                if ((/^image\/(gif|png|jpeg)$/i).test(file.type)) {
+                if ((/^image\/(png|jpeg|jpg)$/i).test(file.type)) {
                     var reader = new FileReader(file);
 
                     reader.readAsDataURL(file);
