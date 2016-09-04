@@ -43,28 +43,31 @@
                     <a href="#" id="type" class="edit" data-type="text" data-inputclass="type-input" data-value="">Тип документа</a>
                     <p>№</p>
                     <a href="#" id="number" class="edit" data-type="text" data-inputclass="number-input" data-value="">вкажіть номер</a>
-                    <a href="#" id="data" class="edit" data-type="text" data-inputclass="data-input" data-format="dd.mm.yyyy" data-value="">вкажіть дату</a>
+                    <a href="#" id="data" class="edit" data-type="text" data-inputclass="data-input" data-value="">вкажіть дату</a>
                 </div>
             </div>
         </div>
         <div class="sender">
-            <div class="row">
-                <p class="sender-title">Відправник</p>
-                <div class="sender-name">
-                    <a href="#" id="sender" class="edit sender-name" data-type="text" data-inputclass="sender-input" data-value="текст">вкажіть відправника</a>
+            <div class="row  col-xs-12 col-sm-7 pull-right">
+                <p class="sender-title col-xs-4">Відправник</p>
+                <div class="sender-name col-xs-8">
+                    <a href="#" id="sender" class="edit sender-name" data-type="text" data-inputclass="sender-input" data-value="">вкажіть відправника</a>
                 </div>
             </div>
         </div>
         <div class="receiver">
-            <div class="row">
-                <p class="receiver-title">Адресат</p>
-                <div class="receiver-name">
-                    <a href="#" id="receiver" class="edit sender-name" data-type="text" data-inputclass="receiver-input" data-value="текст">вкажіть адресата</a>
+            <div class="row col-xs-12 col-sm-7 pull-right">
+                <p class="receiver-title col-xs-4">Адресат</p>
+                <div class="receiver-name col-xs-8">
+                    <a href="#" id="receiver" class="edit sender-name" data-type="text" data-inputclass="receiver-input" data-value="">вкажіть адресата</a>
                 </div>
             </div>
         </div>
         <div class="title">
-            <a href="#" id="doc-title" class="edit" data-type="text" data-inputclass="doc-title-input" data-value="текст">Вкажіть вид документу</a>
+            <a href="#" id="doc-title" class="edit" data-type="text" data-inputclass="doc-title-input" data-value="">Вкажіть вид документа</a>
+        </div>
+        <div class="description">
+            <a href="#" id="doc-description" class="edit" data-type="text" data-inputclass="doc-description-input" data-value="">Опис документа</a>
         </div>
         <div class="qr-block">
             <div class="row">
@@ -132,8 +135,8 @@
 //            X-Editable. End
 //            QR-Code.Begin
             var qrcode = new QRCode("qrcode", {
-                width: 128,
-                height: 128,
+                width: 80,
+                height: 80,
                 colorDark : "#000000",
                 colorLight : "#ffffff",
                 correctLevel : QRCode.CorrectLevel.H

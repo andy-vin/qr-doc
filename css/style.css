@@ -90,7 +90,7 @@ page[size="A4"][layout="portrait"] {
 }
 .details .row .type {
     float: right;
-    padding-bottom: 10%;
+    padding-bottom: 5%;
     padding-right: 10px;
 }
 .details .row .type a,
@@ -106,7 +106,8 @@ page[size="A4"][layout="portrait"] {
 .details .row .type .editable-unsaved,
 .sender .row .editable-unsaved,
 .receiver .row .editable-unsaved,
-.title .editable-unsaved {
+.title .editable-unsaved,
+.description .editable-unsaved {
     border-bottom: none;
     color: black;
     font-weight: normal;
@@ -118,7 +119,9 @@ page[size="A4"][layout="portrait"] {
 .receiver .row .editable-unsaved:hover,
 .receiver .row .editable-unsaved:focus,
 .title .editable-unsaved:hover,
-.title .editable-unsaved:focus {
+.title .editable-unsaved:focus,
+.description .editable-unsaved:hover,
+.description .editable-unsaved:focus {
     border-bottom: dashed 1px #0088cc;
     color: #337ab7;
 }
@@ -129,8 +132,9 @@ page[size="A4"][layout="portrait"] {
 }
 .sender-input,
 .receiver-input,
-.doc-title-input {
-    width: 470px !important;;
+.doc-title-input,
+.doc-description-input {
+    width: 245px !important;;
 }
 
 .sender .row .sender-title,
@@ -147,10 +151,24 @@ page[size="A4"][layout="portrait"] {
      width: auto;
      border-bottom: none;
 }
+.sender .row .sender-title,
+.receiver .row .receiver-title {
+    float: left;
+    padding: 0;
+    width: 20%;
+}
+.sender .row .sender-name,
+.receiver .row .receiver-name {
+    padding: 0;
+}
 
 .title {
     padding: 0 10%;
-    padding-top: 15%;
+    padding-top: 25%;
+    text-align: center;
+}
+.description     {
+    padding-top: 5%;
     text-align: center;
 }
 .qr-block {
@@ -160,11 +178,13 @@ page[size="A4"][layout="portrait"] {
 }
 
 #qrcode {
-    width: 128px;
-    height: 128px;
+    width: 80px;
+    height: 80px;
     float: right;
+    right: 80px;
+    bottom: 60px;
     /*margin: 0 5cm;*/
-    left: calc(-50% + 64px);
+    /*left: calc(-50% + 64px);*/
     position: relative;
 }
 .qr-block .row .select-path {
